@@ -6,11 +6,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: HomeView,
+    meta:{ title: '首页' }
   },
   {
     path: '/about',
     name: 'About',
     component: () => import('@/views/AboutView.vue'),
+    meta:{ title: '关于' }
   },
 ];
 

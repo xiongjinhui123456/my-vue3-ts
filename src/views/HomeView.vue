@@ -2,21 +2,28 @@
   <div>
     <h1>Home Page {{ text }}</h1>
     <p>Count:{{ store.count }}</p>
-    <button @click="store.increment">Increment</button>
-    <button @click = "handleClick">点击事件</button>
+    <ElButton @click="store.increment" type="primary">Increment</ElButton>
+    <ElButton @click = "handleHomeViewClick" type="success">点击事件</ElButton>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMainStore } from '@/store';
+import { ElMessage } from 'element-plus';
 const store = useMainStore();
 defineProps({
   text:String
 })
-const emit = defineEmits<{(e:'qq'):void}>()
-function handleClick(){
-  //触发父组件的事件
-emit('qq')
+// const emit = defineEmits<{(e:'qq'):void}>()
+// function handleClick(){
+//   //触发父组件的事件
+// emit('qq')
+// }
+function handleHomeViewClick(){
+  ElMessage({
+    message: `${store.count} message: 'Congrats, this is a success message.'`,
+    type: 'success',
+  })
 }
 </script>
 
