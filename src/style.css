@@ -2,12 +2,3 @@
   padding: 0;
   margin: 0
 }
-
-.el-message {
-  position: fixed !important;
-  width:100px;
-  top: 20px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 9999 !important;
-}
