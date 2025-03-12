@@ -14,6 +14,12 @@ const routes = [
     component: () => import('@/views/AboutView.vue'),
     meta:{ title: '关于' }
   },
+  {
+    path: '/user1',
+    name: 'User',
+    component: () => import('@/views/UserView.vue'),
+    meta:{ title: '用户1' }
+  },
 ];
 
 const router = createRouter({

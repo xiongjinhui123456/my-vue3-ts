@@ -14,14 +14,10 @@ const store = useMainStore();
 defineProps({
   text:String
 })
-// const emit = defineEmits<{(e:'qq'):void}>()
-// function handleClick(){
-//   //触发父组件的事件
-// emit('qq')
-// }
+
 function handleHomeViewClick(){
   ElMessage({
-    message: `${store.count} message: 'Congrats, this is a success message.'`,
+    message: `一共点击了${store.count} 次`,
     type: 'success',
   })
 }
