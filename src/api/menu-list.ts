@@ -7,7 +7,7 @@ export interface MenuItem {
   children?: MenuItem[];
 }
 // 获取菜单列表
-export const getMenus = (): Promise<MenuItem[]> => {
+export const getMenus = () => {
   return http.get('/menuList');
 };
 

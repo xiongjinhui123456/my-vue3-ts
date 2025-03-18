@@ -11,7 +11,9 @@ const menuList = ref<MenuItem[]>([]);
 
 const fetchMenus = async () => {
   try {
-    menuList.value = await getMenus();
+    const res= await getMenus();
+    menuList.value  = res.data
+    
     // 遍历 menuList，为每个菜单项匹配 path
     const setMenuPaths = (menus: MenuItem[], paths: any[]) => {
       menus.forEach((menu) => {

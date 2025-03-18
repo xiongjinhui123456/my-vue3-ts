@@ -19,7 +19,7 @@ http.interceptors.request.use(
 );
 // 响应拦截器
 http.interceptors.response.use(
-  (response) => response.data,
+  (response) => response,
   (error) => {
     return Promise.reject(error);
   },

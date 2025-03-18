@@ -1,13 +1,10 @@
 <template>
   <div class="login">
-    <div style="margin-bottom: 10px">
-      <h2>登录</h2>
-    </div>
+    <b style="margin-bottom: 10px; font-size: 24px">登 录</b>
     <el-form
-      @submit.prevent="handleLogin"
       :model="form"
       label-width="auto"
-      style="max-width: 600px"
+      style="width: 500px"
       autocomplete="new-password"
     >
       <el-form-item label="用户名">
@@ -24,6 +21,7 @@
         <El-Input
           v-model="form.password"
           type="password"
+          show-password
           id="password"
           placeholder="请输入密码"
           required
@@ -31,35 +29,44 @@
         />
       </el-form-item>
       <div style="display: flex; justify-content: space-evenly">
-        <el-Button type="primary" style="width: 30%">登录</el-Button>
-        <el-Button type="default" style="width: 30%">注册</el-Button>
+        <el-Button type="primary" @click="handleLogin" style="width: 100%"
+          >登录</el-Button
+        >
+        <el-Button type="default" style="width: 100%" @click="handleRegister"
+          >注册</el-Button
+        >
       </div>
     </el-form>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
+import { login } from '@/api/auth';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
-const username = ref('');
-const password = ref('');
 const router = useRouter();
-
-const handleLogin = async () => {
-  // 简单的登录验证逻辑（根据实际需求可以用 API 请求进行验证）
-  if (username.value === 'admin' && password.value === '1234') {
-    // 登录成功，跳转到首页
-    router.push('/');
-  } else {
-    alert('用户名或密码错误');
-  }
-};
-
 const form = reactive({
   username: '',
   password: '',
 });
+const handleLogin = async () => {
+  try {
+    const res = await login({ ...form });
+    if(res){
+      localStorage.setItem('token',res.data.token)
+    }
+
+    router.push('/');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const handleRegister = async () => {
+  // 跳转到注册页面
+  router.push('/register');
+};
 </script>
 
 <style scoped>
@@ -67,5 +74,7 @@ const form = reactive({
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: beige;
+  padding: 50px;
 }
 </style>
